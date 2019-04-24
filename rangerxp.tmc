@@ -4,7 +4,7 @@
         <[vec32array][ContactSpheres][ (0.276 -0.680 -0.991 0.182) (0.276 0.680 -0.991 0.182) (-3.471 0.0 -0.4502 0.08865) ]>
         <[string8][DisplayName][Sherwood Ranger XP]>
         <[string8][DescriptionTextEN][This is a Sherwood Ranger XP kit plane. Manufactured by the The Light Aircraft Company in the UK. A very cool project that lets students experience building a plane. The XP (CAT A(UK)) is a clipped wing version of the ST. Engine: D-motor LF2600 2690cc, liquid cooled, four cylinder, four stroke, 91.8hp, fuel injected, flathead Folding Wings for storage Level flight: approximately 70mph.
-		Made by Krzysztof Kaniewski. 3D Design: Jared Watson.]>
+For Aerofly FS2 made by Krzysztof Kaniewski. 3D Design: Jared Watson.]>
 		<[float64][WingSpan][7.1]>
 		<[float64][Mass][244]>
 		<[float64][MaximumSpeed][43.5]>
@@ -19,7 +19,7 @@
         <[float64][QSpan][7.1]>
         <[float64][QMass][450.0]>
         <[float64][QSpeed][35.0]>
-        <[float64][QPower][48000.0]>
+        <[float64][QPower][67455.0]>
         <[float64][QThrust][0.0]>
         <[float64][QRange][320000.0]>
         <[float64][QRatio][0.0]>
