@@ -2,9 +2,9 @@
 
 	//-------------------------------------
 	// Plane: Sherwood Ranger
-	// Compilation: krzysk (at) wp.pl
-	// 3D model: Jared Watson
-	// Date: Sun Dec 07 2014; 2019
+	// Compilation: Krzysztof Kaniewski
+	// Original 3D model: Jared Watson
+	// Date: Sun Dec 07 2014; Apr 2019
 	//-------------------------------------
 
     <[modelmanager][][]
@@ -609,7 +609,7 @@
                 <[float64][Cm][ 1.0 ]>
             >
      
-            <[input_default][AileronInput][]
+            <[input_control][AileronInput][]
                 <[tmvector2d][Range][ -1.0 1.0 ]>
                 <[string8][Input][Controls.Roll.Input]>
             >
@@ -617,7 +617,7 @@
                 <[string8][Input][AileronInput.Output]>
                 <[string8][Message][Aircraft.Aileron]>
             >
-            <[input_default][ElevatorInput][]
+            <[input_control][ElevatorInput][]
                 <[tmvector2d][Range][ -1.0 1.0 ]>
                 <[string8][Input][Controls.Pitch.Input]>
             >
@@ -694,16 +694,6 @@
             <[clamp][RudderTrimmed][]
                 <[string8][Input][RudderTrimmedMix.Output]>
                 <[tmvector2d][Range][ -1.0 1.0 ]>
-            >
-            <[servolinear][ServoCheck][]
-                <[string8][Input][ThrottleInput.Output]>
-                <[float64][OutputSpeed][1.0]>
-                <[float64][Position][0.0]>
-                <[float64array][InputPosition][  0.0 1.0 ]>
-                <[float64array][OutputPosition][ 0.0 1.0 ]>
-            >
-            <[output_free][ServoCheckOutput][]
-                <[string8][Input][ServoCheck.Output]>
             >
             <[servoclassic][ServoLeftAileron][]
                 <[string8][Input][AileronTrimmed.Output]>
@@ -826,8 +816,8 @@
             <[engine2][Engine][]
                 <[string8][InputThrottle]    [ThrottleInput.Output]>
                 <[string8][InputMixture]     [Mixture.Output]>
-                <[string8][InputLeftMagneto] [LeftMagneto.Output]>
-                <[string8][InputRightMagneto][RightMagneto.Output]>
+                <[string8][InputLeftMagneto] [Magnetos.Output]>
+                <[string8][InputRightMagneto][Magnetos.Output]>
                 <[string8][RotationSpeed]    [DriveShaft.RotationSpeed]>
                 <[string8][AddTorque]        [DriveShaft.AddTorque]>
                 <[string8][AddInertia]       [DriveShaft.AddInertia]>
@@ -865,12 +855,29 @@
             >
 
             // starter
+            <[input_button][ButtonStarter][]
+                <[string8][Input][Controls.Starter]>
+				<[string8][Events][ SwitchSound.Trigger ]>
+				<[string8][EventsRelease][ SwitchSound.Trigger ]>
+            >
+            <[input_active][StarterButtonPushed][]
+                <[string8][Input][Controls.Starter]>
+            >
+            <[event_edge][StarterActiveSound][]
+                <[string8][Input][StarterButtonPushed.Output]>
+                <[string8][Events][ IgnitionSound.Trigger ]>
+                <[bool][Rising][true]>
+                <[bool][Falling][false]>
+            >
+            <[output_free][StarterButtonPushedOutput][]
+                <[string8][Input][StarterButtonPushed.Output]>
+            >			
             <[electrical_bus][StarterBus][]
                 <[float64][Voltage][12.0]>
                 <[float64][RatedVoltage][14.25]>
             >
             <[electrical_switch][StarterSwitch][]
-                <[string8][InputEnable][StarterActive.Output]>
+                <[string8][InputEnable][StarterButtonPushed.Output]>
                 <[string8][InputVoltage0][MainBus.Output]>
                 <[string8][InputVoltage1][StarterBus.Output]>
                 <[string8][AddLoad0][MainBus.AddLoad]>
@@ -882,7 +889,7 @@
                 <[string8][AddLoad][StarterBus.AddLoad]>
                 <[float64][RatedRotationSpeed][20.0]>
                 <[float64][RatedVoltage][14.0]>
-                <[float64][RatedCurrent][100.0]>
+                <[float64][RatedCurrent][130.0]>
                 <[string8][InputRotationSpeed][DriveShaft.RotationSpeed]>
                 <[string8][AddTorque][DriveShaftProxy2.SetValue]>
             >
@@ -980,57 +987,16 @@
             <[output_free][MixtureOutput][]
                 <[string8][Input][Mixture.Output]>
             >
-            // propeller speed			
-            <[input_lever][PropSpeedInput][]
-                <[tmvector2d][Range][ 0.0 1.0 ]>
-                <[uint][Positions][41]>
-                <[float64][Value][1.0]>
-                <[string8][Input][Controls.PropellerSpeed1]>
-            >
-            <[servoclassic][ServoPropRPM][]
-                <[string8][Input][PropSpeedInput.Output]>
-                <[float64][Speed][1.0]>
-                <[float64][P1][1.0]>
-            >
-            <[output_free][ServoPropRPMOutput][]
-                <[string8][Input][ServoPropRPM.Output]>
-            >
-            <[servolinear][ServoPropSpeed][]
-                <[string8][Input][PropSpeedInput.Output]>
-                <[float64][OutputSpeed][100]>
-                <[float64][Position][283.5]>
-                <[float64array][InputPosition][  0.0 1.0 ]>
-                <[float64array][OutputPosition][ 115 283.5 ]>
-            >    
-            <[output_free][ServoPropSpeedOutput][]
-                <[string8][Input][ServoPropSpeed.Output]>
-            >			
+			
             // magnetos
-            <[input_discrete_momentary][Magnetos][]
+			<[input_switch][Magnetos][]
                 <[string8][Input][Controls.Magnetos]>
-                <[tmvector2d][Range][ 0.0 4.0 ]>
-                <[float64][Value][3.0]>
-                <[string8][EventsUp][ SwitchSound.Trigger ]>
-                <[string8][EventsDown][ SwitchSound.Trigger ]>
-            >
+				<[string8][Events][ SwitchSound.Trigger ]>
+				<[string8][EventsRelease][ SwitchSound.Trigger ]>
+				<[float64][Value][1.0]>
+			>
             <[output_free][MagnetosOutput][]
                 <[string8][Input][Magnetos.Output]>
-            >
-            <[logic_set][LeftMagneto][]
-                <[string8][Input][Magnetos.Output]>
-                <[string8][Set][2 3 4]>
-            >
-            <[logic_set][RightMagneto][]
-                <[string8][Input][Magnetos.Output]>
-                <[string8][Set][1 3 4]>
-            >
-            <[logic_equal][StarterActive][]
-                <[string8][Input0][Magnetos.Output]>
-                <[string8][Input1][4]>
-            >
-
-            <[output_free][StarterActiveOutput][][]
-                <[string8][Input][StarterActive.Output]>
             >
             // engines end
 			
@@ -1314,11 +1280,19 @@
             // main bus end
 			
 			// sweep wings
+	        <[logic_greater][ZeroAirspeed][]
+                <[string8][Input0][AirspeedIndicator.IndicatedAirspeed]>
+                <[string8][Input1][1.0]>				
+            >			
+			
+            <[logic_or][SweepDisable][]
+                <[string8][Inputs][ FuelSelectorSwitch.Output SwitchMasterBattery.Output Magnetos.Output ZeroAirspeed.Output ]>
+            >			
             <[servolinear][ServoSweepWings][]
-                <[string8][Input][AirspeedIndicator.IndicatedAirspeed]>
+                <[string8][Input][SweepDisable.Output]>
                 <[float64][OutputSpeed][0.5]>
                 <[float64][Position][0.0]>
-                <[float64array][InputPosition][ 1.0 2.0 ]>
+                <[float64array][InputPosition][ 0.0 1.0 ]>
                 <[float64array][OutputPosition][ 1.0 0.0 ]>
             >
             <[output_free][ServoSweepWingsOutput][]
@@ -1327,11 +1301,9 @@
             // animations end
             
             // sound events
-            <[event_sound][ButtonSound][]
-            >
             <[event_sound][SwitchSound][]
             >
-            <[event_sound][KnobTurnSound][]
+            <[event_sound][IgnitionSound][]
             >			
         >
         <[pointer_list_tmgraphics][GraphicObjects][]
@@ -2124,7 +2096,7 @@
             >
 			//Fuel cut switch
             <[graphics_input][MixtureInput][]
-                <[uint32][InputID][Mixture.Output]> 		
+                <[uint32][InputID][FuelSelectorOn.Output]> 		
             >
             <[graphics_mapping][CockpitMapping_378][]
                 <[string8][Input][MixtureInput.Output]> 
@@ -2140,12 +2112,11 @@
             >
 			// ignition_on (Magneto)
             <[graphics_input][CockpitInput_5][]
-                <[uint32][InputID][ServoCheck.Output]>
-                <[float64][Scaling][3.0]>
+                <[uint32][InputID][Magnetos.Output]>
             >
             <[graphics_mapping][CockpitMapping_383][]
                 <[string8][Input][CockpitInput_5.Output]> 
-                <[tmvector2d][Map][(0 1.832596) (3.0 1.308997)]>
+                <[tmvector2d][Map][(0 1.832596) (1.0 1.308997)]>
             >
             <[hingedbodygraphics][Sphere_007_14][]
                 <[string8][GeometryList][ sphere_007_14 ]>
@@ -2157,7 +2128,7 @@
             >
 			// engage_starter
             <[graphics_input][CockpitInput_6][]
-                <[uint32][InputID][ServoCheck.Output]>
+                <[uint32][InputID][StarterButtonPushed.Output]>
             >
             <[graphics_mapping][CockpitMapping_388][]
                 <[string8][Input][CockpitInput_6.Output]> 
@@ -2176,7 +2147,7 @@
                 <[string8][GeometryList][ sphere_004_sphere_14 ]>
                 <[uint32][PositionID][Fuselage.R]>
                 <[uint32][OrientationID][Fuselage.Q]>
-				<[uint32][AngleID][BatterySwitch.Output]>
+				<[uint32][AngleID][SwitchMasterBattery.Output]>
 				<[float64][AngleMax][0.523599]>
                 <[tmvector3d][Axis][0.0 -1.0 0.0]>
                 <[tmvector3d][Pivot][-0.3776 0.037 0.2258]>
@@ -4338,16 +4309,12 @@
             >
             <[soundmapping][VolumeIgnition][]
                 <[string8][Input][RotationSpeed.Output]>
-                <[tmvector2d][Map][ (0.0 0.0) (5.0 0.8) (20.0 0.8) (30.0 0.0) ]>
-            >
-            <[soundmapping][PitchIgnition][]
-                <[string8][Input][RotationSpeed.Output]>
-                <[tmvector2d][Map][ (0.0 0.0) (10.0 0.3) (20.0 0.5) (30.0 1.2) ]>
+                <[tmvector2d][Map][ (0.0 0.3) (5.0 0.8) (20.0 0.8) (30.0 0.0) ]>
             >
             <[sound_multi][IgnitionSoundExt][]
                 <[string8][InputTrigger][IgnitionSoundInput.Output]>
                 <[string8][InputVolume][VolumeIgnition.Output]>
-                <[string8][InputPitch][PitchIgnition.Output]>
+                <[string8][InputPitch][1.0]>
                 <[uint32][PositionID][Fuselage.R]>
                 <[uint32][VelocityID][Fuselage.V]>
                 <[string8][SoundFile][starter_out.wav]>
@@ -4356,7 +4323,7 @@
             <[sound_multi][IgnitionSoundInt][]
                 <[string8][InputTrigger][IgnitionSoundInput.Output]>
                 <[string8][InputVolume][VolumeIgnition.Output]>
-                <[string8][InputPitch][PitchIgnition.Output]>
+                <[string8][InputPitch][1.0]>
                 <[uint32][PositionID][Fuselage.R]>
                 <[uint32][VelocityID][Fuselage.V]>
                 <[string8][SoundFile][starter_inn.wav]>
@@ -4481,19 +4448,7 @@
                 <[string8][SoundFile][roll_ground.wav]>
             >
 			
-            // button and switches
-            <[soundinput][ButtonSound][]
-                <[uint32][InputID][ButtonSound.Output]>
-            >
-            <[sound_multi][SoundButton][]
-                <[uint32][PositionID][Fuselage.R]>
-                <[uint32][VelocityID][Fuselage.V]>
-                <[string8][InputTrigger][ButtonSound.Output]>
-                <[string8][InputVolume][0.6]>
-                <[string8][InputPitch][1.0]>
-                <[string8][SoundFile][click.wav]>
-                <[bool][External][false]>
-            >
+            // switches
             <[soundinput][SwitchSound][]
                 <[uint32][InputID][SwitchSound.Output]>
             >
