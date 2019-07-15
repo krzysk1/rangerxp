@@ -4,7 +4,11 @@ This is a Sherwood Ranger XP kit plane. Manufactured by the The Light Aircraft C
 The prime difference between the Sherwood Ranger ST (Microlight) and the Sherwood Ranger XP (Cat A) is one of wing span and wing loading. The ST has a wing span of 7.92 m and the XP 7 m, they both have the same MTOW the XP therefore has increased wing loading and a higher stall speed.
 
 Model for Aerofly FS2 made by Krzysztof Kaniewski. 
-3D Design by Jared Watson.
+Original 3D model made by Jared Watson.
+
+https://forums.x-plane.org/index.php?/files/file/23029-sherwood-ranger-xp/
+
+https://forums.x-plane.org/index.php?/forums/topic/63790-sherwood-ranger-biplane-microlightfreeware/
 
 Tandem two-seat taildragger biplane
  Wings – constant-chord unstaggered and swept
@@ -59,3 +63,5 @@ Max. level speed 80mph.
  Service ceiling N/A.
  Range at average cruising speed 200 miles.
  Noise level N/A. (engine dependant)
+
+livery pack https://forums.x-plane.org/index.php?/files/file/25889-school-livery-pack/
