@@ -64,4 +64,4 @@ Max. level speed 80mph.
  Range at average cruising speed 200 miles.
  Noise level N/A. (engine dependant)
 
-livery pack https://forums.x-plane.org/index.php?/files/file/25889-school-livery-pack/
+livery pack comes from here: https://forums.x-plane.org/index.php?/files/file/25889-school-livery-pack/
