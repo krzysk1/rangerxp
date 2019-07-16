@@ -4,7 +4,7 @@
 	// Plane: Sherwood Ranger
 	// Compilation: Krzysztof Kaniewski
 	// Original 3D model: Jared Watson
-	// Date: Sun Dec 07 2014; Jul 2019
+	// Date: Sun Dec 07 2014 (AFS1); Jul 2019
 	//-------------------------------------
 
     <[modelmanager][][]
@@ -259,7 +259,7 @@
                 <[float64][Inflation][320528.4]>
                 <[string8][Body][RightGear]>
                 <[tmvector3d][R0][0.276625 -0.680475 -0.991087]>
-                <[tmvector3d][X0][ 0.0 0.9903 0.139 ]>
+                <[tmvector3d][Y0][ 0.0 0.9903 0.139 ]>
                 <[string8][InputBrake][RightBrake.Output]>
                 <[float64][BrakeStrength][0.11]>
             >
@@ -271,7 +271,7 @@
                 <[float64][RimRadius][0.075]>
                 <[string8][Body][LeftGear]>
                 <[tmvector3d][R0][0.276625 0.680475 -0.991087]>
-                <[tmvector3d][X0][ 0.0 0.9903 -0.139 ]>
+                <[tmvector3d][Y0][ 0.0 0.9903 -0.139 ]>
                 <[string8][InputBrake][LeftBrake.Output]>
                 <[float64][BrakeStrength][0.11]>
             >
@@ -283,7 +283,7 @@
                 <[float64][RimRadius][0.0408]>
                 <[float64][Inflation][351580.8]>
                 <[string8][Body][TailGear]>
-                <[tmvector3d][R0][-3.471160 0.0 -0.460072]>
+                <[tmvector3d][R0][-3.47116 0.0 -0.460072]>
                 <[tmvector3d][X0][ 1.0 0.0 0.0 ]>
             >
             <[output][GroundRollSpeedTail][]
