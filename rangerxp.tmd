@@ -752,14 +752,14 @@
                 <[tmmatrix3d][B0][1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0]>
             >
             <[multibody_joint][PropellerJoint][]
-                <[tmvector3d][X0][ 1.0 0.0 0.0]>
+                <[tmvector3d][X0][ -1.0 0.0 0.0]>
                 <[float64][Kp][0.0]>
                 <[float64][Kd][0.0]>
                 <[string8][Body0][Fuselage]>
                 <[string8][Body1][PropellerBody]>
                 <[tmvector3d][R0][1.853696 0.0 0.0762]>
                 <[uint32][Type][0]>
-                <[float64][InitialVelocity][-72.0]>
+                <[float64][InitialVelocity][72.0]>
             >
             <[airfoil][AirfoilPropeller][]
                 <[float64][Cl0][0.47]>
